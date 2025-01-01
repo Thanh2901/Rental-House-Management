@@ -6,6 +6,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
+
 @Entity
 @Table(name = "asset")
 @Builder
@@ -15,13 +17,16 @@ import lombok.NoArgsConstructor;
 public class Asset {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    String assetId;
+    String id;
     @ManyToOne(fetch = FetchType.LAZY)
-            @JoinColumn(name = "roomId")
-    Room roomId;
+            @JoinColumn(name = "room_id")
+    Room room;
+    @ManyToOne(fetch = FetchType.LAZY)
+            @JoinColumn(name = "condition_id")
+    Condition condition;
     String assetType;
     String assetName;
-    String location;
-    String condition;
-
+    LocalDateTime ownerShipDate;
+    LocalDateTime upgradeDate;
+    String imagePath;
 }

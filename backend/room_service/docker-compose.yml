@@ -13,7 +13,6 @@ services:
       - "5666:5432"
     volumes:
       - room_data:/var/lib/postgresql/data
-#      - ./docker/init.sql:/docker-entrypoint-initdb.d/init.sql
 
 volumes:
   room_data:

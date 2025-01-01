@@ -11,12 +11,14 @@ import java.util.List;
 public class Room {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    String roomId;
+    String id;
     double floorArea;
     double rentalPrice;
     int maximumOccupancy;
-    String roomType;
+    @ManyToOne(fetch = FetchType.LAZY)
+            @JoinColumn(name = "room_type_id")
+    RoomType roomType;
     boolean roomStatus;
-    @OneToMany(mappedBy = "roomId", fetch = FetchType.EAGER, orphanRemoval = true)
+    @OneToMany(mappedBy = "room", fetch = FetchType.EAGER, orphanRemoval = true)
     List<Asset> facilities;
 }

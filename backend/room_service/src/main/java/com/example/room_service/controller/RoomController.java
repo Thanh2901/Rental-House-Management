@@ -1,9 +1,8 @@
 package com.example.room_service.controller;
 
-import com.example.room_service.dto.RoomRequest;
+import com.example.room_service.dto.request.RoomRequest;
 import com.example.room_service.entity.Room;
 import com.example.room_service.service.RoomService;
-import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;

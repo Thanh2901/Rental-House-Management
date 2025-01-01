@@ -1,4 +1,4 @@
-package com.example.room_service.dto;
+package com.example.room_service.dto.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -7,7 +7,6 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class AssetDTO {
-    private String assetName;
-    private String assetType;
+public class RoomTypeRequest {
+    String type;
 }
