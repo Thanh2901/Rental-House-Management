@@ -9,6 +9,5 @@ import org.mapstruct.Mapping;
 @Mapper(componentModel = "spring")
 public interface AssetMapper {
     Asset toAsset(AssetRequest request);
-    @Mapping(target = "roomId", source = "room.id")
     AssetResponse toAssetResponse(Asset asset);
 }

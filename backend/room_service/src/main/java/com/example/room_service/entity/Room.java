@@ -16,9 +16,9 @@ public class Room {
     double rentalPrice;
     int maximumOccupancy;
     @ManyToOne(fetch = FetchType.LAZY)
-            @JoinColumn(name = "room_type_id")
+    @JoinColumn(name = "room_type_id")
     RoomType roomType;
     boolean roomStatus;
-    @OneToMany(mappedBy = "room", fetch = FetchType.EAGER, orphanRemoval = true)
+    @OneToMany(mappedBy = "room", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     List<Asset> facilities;
 }

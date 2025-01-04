@@ -15,7 +15,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 public class AssetRequest {
-    int conditionId;
+    long conditionId;
     String assetType;
     String assetName;
     LocalDateTime ownerShipDate;

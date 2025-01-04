@@ -13,7 +13,7 @@ public class RoomRequest {
     double floorArea;
     double rentalPrice;
     int maximumOccupancy;
-    int roomTypeId;
+    long roomTypeId;
     boolean roomStatus;
     List<AssetRequest> facilities;
 }

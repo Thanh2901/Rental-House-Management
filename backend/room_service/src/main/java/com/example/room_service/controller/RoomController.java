@@ -1,6 +1,8 @@
 package com.example.room_service.controller;
 
+import com.example.room_service.dto.request.AssetRequest;
 import com.example.room_service.dto.request.RoomRequest;
+import com.example.room_service.dto.response.RoomResponse;
 import com.example.room_service.entity.Room;
 import com.example.room_service.service.RoomService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +19,7 @@ public class RoomController {
     private RoomService roomService;
 
     @PostMapping("/add")
-    public ResponseEntity<Room> addRoom(@RequestBody RoomRequest request) {
+    public ResponseEntity<RoomResponse> addRoom(@RequestBody RoomRequest request) {
         return ResponseEntity.ok(roomService.createRoom(request));
     }
 }

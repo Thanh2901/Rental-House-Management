@@ -1,6 +1,9 @@
 package com.example.room_service.dto.response;
 
 import com.example.room_service.entity.Condition;
+import com.example.room_service.entity.Room;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,7 +16,8 @@ import java.time.LocalDateTime;
 public class AssetResponse {
     String id;
     Condition condition;
-    String roomId;
+    @JsonIgnore
+    Room room;
     String assetType;
     String assetName;
     LocalDateTime ownerShipDate;
