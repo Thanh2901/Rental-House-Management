@@ -11,9 +11,11 @@ import com.example.room_service.entity.Room;
 import com.example.room_service.entity.RoomType;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+import org.mapstruct.MappingTarget;
 
 @Mapper(componentModel = "spring")
 public interface RoomMapper {
     Room toRoom(RoomRequest request);
     RoomResponse toRoomResponse(Room room);
+    Room updateRoom(@MappingTarget Room room, RoomRequest request);
 }

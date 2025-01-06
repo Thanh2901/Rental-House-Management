@@ -15,7 +15,7 @@ public class Room {
     double floorArea;
     double rentalPrice;
     int maximumOccupancy;
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "room_type_id")
     RoomType roomType;
     boolean roomStatus;

@@ -26,4 +26,12 @@ public class AssetService {
         asset.setCondition(condition);
         return asset;
     }
+
+    public Asset updateAssetForRoom(String id, AssetRequest request) {
+        Asset asset = assetRepository.findById(id).orElseThrow(() -> new RuntimeException("asset not found"));
+        Condition condition = conditionRepository.findById(request.getConditionId()).orElseThrow(() -> new RuntimeException("condition not found"));
+        asset.setCondition(condition);
+        assetMapper.updateAsset(asset, request);
+        return asset;
+    }
 }

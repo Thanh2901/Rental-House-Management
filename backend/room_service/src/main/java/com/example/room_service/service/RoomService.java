@@ -71,4 +71,45 @@ public class RoomService {
 
         return roomResponse;
     }
+
+    public List<RoomResponse> getListRoom() {
+        return roomRepository.findAll().stream().map(roomMapper::toRoomResponse).toList();
+    }
+
+    public RoomResponse getRoomById(String id) {
+        Room room = roomRepository.findById(id).orElseThrow(() -> new RuntimeException("Room not found"));
+        return roomMapper.toRoomResponse(room);
+    }
+
+    public RoomResponse updateRoomById(String id, RoomRequest request) {
+        Room room = roomRepository.findById(id).orElseThrow(() -> new RuntimeException("Room not found"));
+        // Xu ly room type
+        RoomType roomType = roomTypeRepository.findById(request.getRoomTypeId())
+                .orElseThrow(() -> new RuntimeException("Room type not found"));
+        room.setRoomType(roomType);
+
+        // Xu ly asset
+        List<AssetRequest> assetRequestList = request.getFacilities();
+        List<Asset> assets = room.getFacilities();
+
+        for (AssetRequest assetRequest : assetRequestList) {
+            for(Asset asset : assets) {
+                Asset newAsset = assetService.updateAssetForRoom(asset.getId(), assetRequest);
+                room.getFacilities().add(newAsset);
+                assetRepository.save(newAsset);
+            }
+        }
+
+        room = roomMapper.updateRoom(room, request);
+        room = roomRepository.save(room);
+
+        List<AssetResponse> assetResponses = room.getFacilities().stream()
+                .map(assetMapper::toAssetResponse)
+                .collect(Collectors.toList());
+
+        RoomResponse roomResponse = roomMapper.toRoomResponse(room);
+        roomResponse.setFacilities(assetResponses);
+
+        return roomResponse;
+    }
 }

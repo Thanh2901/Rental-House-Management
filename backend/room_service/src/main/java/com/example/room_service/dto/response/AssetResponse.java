@@ -3,7 +3,6 @@ package com.example.room_service.dto.response;
 import com.example.room_service.entity.Condition;
 import com.example.room_service.entity.Room;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -22,4 +21,5 @@ public class AssetResponse {
     String assetName;
     LocalDateTime ownerShipDate;
     LocalDateTime upgradeDate;
+    String imagePath;
 }

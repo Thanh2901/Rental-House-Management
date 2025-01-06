@@ -5,9 +5,11 @@ import com.example.room_service.dto.response.AssetResponse;
 import com.example.room_service.entity.Asset;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+import org.mapstruct.MappingTarget;
 
 @Mapper(componentModel = "spring")
 public interface AssetMapper {
     Asset toAsset(AssetRequest request);
     AssetResponse toAssetResponse(Asset asset);
+    Asset updateAsset(@MappingTarget Asset asset, AssetRequest request);
 }
