@@ -1,4 +1,4 @@
-package com.example.tenant_service.dto;
+package com.example.tenant_service.dto.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class TenantDTO {
+public class TenantRequest {
     private String fullName;
     private String phoneNumber;
     private String idCardPassport;

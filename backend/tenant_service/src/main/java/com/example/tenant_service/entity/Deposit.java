@@ -13,7 +13,7 @@ public class Deposit {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int depositId;
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "tenantId")
+    @JoinColumn(name = "tenant_id")
     Tenant tenantId;
     double depositAmount;
     LocalDateTime depositDate;

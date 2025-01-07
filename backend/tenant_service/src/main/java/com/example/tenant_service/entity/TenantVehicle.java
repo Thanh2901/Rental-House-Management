@@ -11,8 +11,10 @@ public class TenantVehicle {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int vehicleId;
     String licensePlate;
-    String vehicleType;
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "tenantId")
+    @JoinColumn(name = "tenant_vehicle_type_id")
+    TenantVehicleType tenantVehicleType;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "tenant_id")
     Tenant tenantId;
 }
