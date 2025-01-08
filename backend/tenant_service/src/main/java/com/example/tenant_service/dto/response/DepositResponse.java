@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class DepositResponse {
     String id;
-    Tenant tenantId;
+    Tenant tenant;
     double depositAmount;
     LocalDateTime depositDate;
 }

@@ -14,7 +14,7 @@ public class TenantVehicle {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "tenant_vehicle_type_id")
     TenantVehicleType tenantVehicleType;
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "tenant_id")
-    Tenant tenantId;
+    Tenant tenant;
 }

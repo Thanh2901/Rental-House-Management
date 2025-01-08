@@ -13,4 +13,5 @@ import lombok.NoArgsConstructor;
 public class TenantVehicleRequest {
     String licensePlate;
     Long vehicleTypeId;
+    int tenantId;
 }

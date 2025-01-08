@@ -14,5 +14,5 @@ public class TenantVehicleResponse {
     int id;
     String licensePlate;
     TenantVehicleType tenantVehicleType;
-    Tenant tenantId;
+    Tenant tenant;
 }

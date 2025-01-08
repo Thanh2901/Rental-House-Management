@@ -14,7 +14,7 @@ public class Deposit {
     int depositId;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "tenant_id")
-    Tenant tenantId;
+    Tenant tenant;
     double depositAmount;
     LocalDateTime depositDate;
 }
