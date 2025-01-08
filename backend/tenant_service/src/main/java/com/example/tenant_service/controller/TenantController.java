@@ -19,7 +19,7 @@ public class TenantController {
     }
 
     @GetMapping("/get/{tenantId}")
-    public ResponseEntity<TenantResponse> getTenantById(@RequestBody TenantRequest tenantRequest, @PathVariable int tenantId){
+    public ResponseEntity<TenantResponse> getTenantById(@PathVariable int tenantId){
         return ResponseEntity.ok(tenantService.getTenantById(tenantId));
     }
 

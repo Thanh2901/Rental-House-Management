@@ -1,6 +1,7 @@
 package com.example.tenant_service.controller;
 
 import com.example.tenant_service.dto.request.DepositRequest;
+import com.example.tenant_service.dto.response.DepositResponse;
 import com.example.tenant_service.entity.Deposit;
 import com.example.tenant_service.service.DepositService;
 import com.fasterxml.jackson.annotation.JacksonAnnotationsInside;
@@ -28,6 +29,11 @@ public class DepositController {
     public ResponseEntity<String> deleteDeposit(@PathVariable int depositId){
         depositService.deleteDepositById(depositId);
         return ResponseEntity.ok("Deposit deleted successfully");
+    }
+
+    @GetMapping("/get/{depositId}")
+    public ResponseEntity<DepositResponse> getDepositById(@PathVariable int depositId){
+        return ResponseEntity.ok(depositService.getDepositById(depositId));
     }
 
 }

@@ -2,6 +2,7 @@ package com.example.tenant_service.service;
 
 
 import com.example.tenant_service.dto.request.DepositRequest;
+import com.example.tenant_service.dto.response.DepositResponse;
 import com.example.tenant_service.entity.Deposit;
 import com.example.tenant_service.mapper.DepositMapper;
 import com.example.tenant_service.repository.DepositRepository;
@@ -23,6 +24,10 @@ public class DepositService {
         Deposit deposit = depositRepository.findById(id).orElseThrow(() -> new RuntimeException("deposit not found"));
         deposit = depositMapper.updateDeposit(deposit, depositRequest);
         return depositRepository.save(deposit);
+    }
+    public DepositResponse getDepositById(int id){
+        Deposit deposit = depositRepository.findById(id).orElseThrow(() -> new RuntimeException("deposit not found"));
+        return depositMapper.toDepositResponse(deposit);
     }
 
     public void deleteDepositById(int id){
