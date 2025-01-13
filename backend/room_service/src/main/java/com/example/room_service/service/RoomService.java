@@ -81,23 +81,50 @@ public class RoomService {
         return roomMapper.toRoomResponse(room);
     }
 
+//    public RoomResponse updateRoomById(String id, RoomRequest request) {
+//        Room room = roomRepository.findById(id)
+//                .orElseThrow(() -> new RuntimeException("Room not found"));
+//
+//        RoomType roomType = roomTypeRepository.findById(request.getRoomTypeId())
+//                .orElseThrow(() -> new RuntimeException("Room type not found"));
+//        room.setRoomType(roomType);
+//
+//        // Create new facilities list
+//        List<Asset> updatedAssets = new ArrayList<>();
+//        for (AssetRequest assetRequest : request.getFacilities()) {
+//            for (Asset asset : room.getFacilities()) {
+//                Asset newAsset = assetService.updateAssetForRoom(asset.getId(), assetRequest);
+//                updatedAssets.add(newAsset);
+//                assetRepository.save(newAsset);
+//            }
+//        }
+//
+//        room.setFacilities(updatedAssets);
+//        room = roomMapper.updateRoom(room, request);
+//        room = roomRepository.save(room);
+//
+//        List<AssetResponse> assetResponses = room.getFacilities().stream()
+//                .map(assetMapper::toAssetResponse)
+//                .collect(Collectors.toList());
+//
+//        RoomResponse roomResponse = roomMapper.toRoomResponse(room);
+//        roomResponse.setFacilities(assetResponses);
+//        return roomResponse;
+//    }
+
     public RoomResponse updateRoomById(String id, RoomRequest request) {
-        Room room = roomRepository.findById(id).orElseThrow(() -> new RuntimeException("Room not found"));
-        // Xu ly room type
+        Room room = roomRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Room not found"));
+
         RoomType roomType = roomTypeRepository.findById(request.getRoomTypeId())
                 .orElseThrow(() -> new RuntimeException("Room type not found"));
         room.setRoomType(roomType);
 
-        // Xu ly asset
-        List<AssetRequest> assetRequestList = request.getFacilities();
-        List<Asset> assets = room.getFacilities();
-
-        for (AssetRequest assetRequest : assetRequestList) {
-            for(Asset asset : assets) {
-                Asset newAsset = assetService.updateAssetForRoom(asset.getId(), assetRequest);
-                room.getFacilities().add(newAsset);
-                assetRepository.save(newAsset);
-            }
+        List<Asset> facilities = room.getFacilities();
+        for (int i = 0; i < request.getFacilities().size(); i++) {
+            AssetRequest assetRequest = request.getFacilities().get(i);
+            Asset asset = facilities.get(i);
+            assetService.updateAssetForRoom(asset.getId(), assetRequest);
         }
 
         room = roomMapper.updateRoom(room, request);
@@ -109,7 +136,7 @@ public class RoomService {
 
         RoomResponse roomResponse = roomMapper.toRoomResponse(room);
         roomResponse.setFacilities(assetResponses);
-
         return roomResponse;
     }
+
 }
