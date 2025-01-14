@@ -1,18 +1,22 @@
 package com.example.finance_service.dto;
 
+import com.example.finance_service.entity.Finance;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.Data;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Data
 public class InvoiceDTO {
+    String id;
     String tenant_id;
     String room_id;
     Double amount;
     String payment_method;
     LocalDate payment_date;
     LocalDate created_at;
+    List<FinanceDTO> finances;
 }

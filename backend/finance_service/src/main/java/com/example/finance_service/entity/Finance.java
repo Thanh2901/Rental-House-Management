@@ -2,6 +2,8 @@ package com.example.finance_service.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
 
@@ -12,10 +14,10 @@ public class Finance {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     String id;
-    @ManyToOne
-            @JoinColumn(name = "invoice_id")
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "invoice_id")
     Invoice invoice;
-    String type;
+    String transaction_type;
     Double amount;
     String description;
     LocalDateTime created_at;

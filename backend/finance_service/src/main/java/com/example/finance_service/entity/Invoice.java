@@ -1,9 +1,12 @@
 package com.example.finance_service.entity;
 
+import jakarta.annotation.PostConstruct;
 import jakarta.persistence.*;
 import lombok.Data;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Table(name = "invoice")
@@ -18,4 +21,6 @@ public class Invoice {
     String payment_method;
     LocalDate payment_date;
     LocalDate created_at;
+    @OneToMany(mappedBy = "invoice", cascade = CascadeType.ALL)
+    List<Finance> finances;
 }

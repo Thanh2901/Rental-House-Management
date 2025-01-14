@@ -6,8 +6,8 @@ import java.time.LocalDateTime;
 
 @Data
 public class FinanceDTO {
-    InvoiceDTO invoice;
-    String type;
+    String id;
+    String transaction_type;
     Double amount;
     String description;
     LocalDateTime created_at;
