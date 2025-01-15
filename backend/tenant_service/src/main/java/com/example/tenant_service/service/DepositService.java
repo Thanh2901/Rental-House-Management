@@ -42,6 +42,8 @@ public class DepositService {
         if(deposit.getDepositDate() != updatedDeposit.getDepositDate()){
             updatedDeposit.setDepositDate(deposit.getDepositDate());
         }
+        updatedDeposit.setDepositAmount(deposit.getDepositAmount());
+        updatedDeposit.setDepositDate(deposit.getDepositDate());
         depositRepository.save(updatedDeposit);
         return depositMapper.toDepositDTO(updatedDeposit);
     }

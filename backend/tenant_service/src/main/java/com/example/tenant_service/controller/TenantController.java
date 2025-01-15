@@ -24,6 +24,10 @@ public class TenantController {
         return ResponseEntity.ok(tenantService.getTenantById(tenantId));
     }
 
+    @PutMapping("/update/{tenantId}")
+    public ResponseEntity<TenantDTO> updateTenant(@PathVariable int tenantId, @RequestBody Tenant tenant){
+        return ResponseEntity.ok(tenantService.updateTenant(tenantId, tenant));
+    }
     @GetMapping("/tenants")
     public ResponseEntity<List<TenantDTO>> getAllTenant(){
         return ResponseEntity.ok(tenantService.getAllTenant());
