@@ -1,17 +1,15 @@
 package com.example.tenant_service.dto.request;
 
-
+import com.example.tenant_service.entity.TenantVehicleType;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class TenantVehicleRequest {
     String licensePlate;
-    Long vehicleTypeId;
+    Long tenantVehicleTypeId;
     int tenantId;
 }

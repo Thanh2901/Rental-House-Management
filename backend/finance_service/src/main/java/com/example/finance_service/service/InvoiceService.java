@@ -22,8 +22,9 @@ public class InvoiceService {
         savedInvoice.getFinances().forEach(finance -> {
             if (finance != null) {
                 finance.setInvoice(savedInvoice);
+            }else {
+                System.out.println("Found a null finance object in the list!");
             }
-            System.out.println("Found a null finance object in the list!");
         });
         return invoiceMapper.toInvoiceDTO(savedInvoice);
     }

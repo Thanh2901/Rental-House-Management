@@ -1,15 +1,13 @@
-package com.example.tenant_service.dto.request;
+package com.example.tenant_service.dto;
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-
 @Data
-@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class TenantVehicleTypeRequest {
+public class TenantVehicleTypeDTO {
+    Long id;
     String type;
 }
