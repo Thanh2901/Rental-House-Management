@@ -1,0 +1,50 @@
+version: '4.0'
+
+services:
+  finance_db:
+    image: postgres:15
+    container_name: finance_db
+    restart: always
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: finance_service
+    ports:
+      - "7666:5432"
+    volumes:
+      - finance_data:/var/lib/postgresql/data
+
+  room_db:
+    image: postgres:15
+    container_name: room_db
+    restart: always
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: room_service
+    ports:
+      - "5666:5432"
+    volumes:
+      - room_data:/var/lib/postgresql/data
+
+  tenant_db:
+    image: postgres:15
+    container_name: tenant_db
+    restart: always
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: tenant_service
+    ports:
+      - "5777:5432"
+    volumes:
+      - tenant_data:/var/lib/postgresql/data
+
+volumes:
+  finance_data:
+  room_data:
+  tenant_data:
+
+networks:
+  default:
+    driver: bridge
