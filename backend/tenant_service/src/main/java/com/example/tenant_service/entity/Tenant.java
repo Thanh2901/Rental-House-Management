@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @Table(name = "tenant")
@@ -16,4 +18,8 @@ public class Tenant {
     String phoneNumber;
     String idCardPassport;
     LocalDateTime rentalStartDate;
+    @OneToMany(mappedBy = "tenant", cascade = CascadeType.ALL)
+    List<TenantVehicle> vehicles;
+    @OneToMany(mappedBy = "tenant", cascade = CascadeType.ALL)
+    List<Deposit> deposits;
 }

@@ -1,7 +1,7 @@
 package com.example.tenant_service.service;
 
+import com.example.tenant_service.dto.TenantVehicleDTO;
 import com.example.tenant_service.dto.request.TenantVehicleRequest;
-import com.example.tenant_service.dto.response.TenantVehicleResponse;
 import com.example.tenant_service.entity.Tenant;
 import com.example.tenant_service.entity.TenantVehicle;
 import com.example.tenant_service.entity.TenantVehicleType;
@@ -12,6 +12,9 @@ import com.example.tenant_service.repository.TenantVehicleTypeRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @Slf4j
@@ -25,21 +28,28 @@ public class TenantVehicleService {
     @Autowired
     TenantRepository tenantRepository;
 
-    public TenantVehicle createTenantVehicle(TenantVehicleRequest tenantVehicleRequest){
-        TenantVehicleType tenantVehicleType = tenantVehicleTypeRepository.findById(tenantVehicleRequest.getVehicleTypeId()).orElseThrow(() -> new RuntimeException("vehicle type not found"));
-        Tenant tenant = tenantRepository.findById(tenantVehicleRequest.getTenantId())
-                .orElseThrow(() -> new RuntimeException("Tenant not found"));
-        TenantVehicle tenantVehicle = tenantVehicleMapper.toTenantVehicle(tenantVehicleRequest);
-        tenantVehicle.setTenantVehicleType(tenantVehicleType);
+    public TenantVehicleDTO createTenantVehicle(TenantVehicleRequest request){
+        TenantVehicle tenantVehicle = tenantVehicleMapper.toTenantVehicle(request);
+        Tenant tenant = tenantRepository.findById(request.getTenantId()).orElseThrow(() -> new RuntimeException("Tenant with id " + request.getTenantId() + " not found"));
+        TenantVehicleType tenantVehicleType = tenantVehicleTypeRepository.findById(request.getTenantVehicleTypeId()).orElseThrow(() -> new RuntimeException("Vehicle type with id " + request.getTenantVehicleTypeId() + " not found"));
         tenantVehicle.setTenant(tenant);
-        return tenantVehicleRepository.save(tenantVehicle);
+        tenantVehicle.setTenantVehicleType(tenantVehicleType);
+        TenantVehicle savedTenantVehicle = tenantVehicleRepository.save(tenantVehicle);
+        return tenantVehicleMapper.toTenantVehicleDTO(savedTenantVehicle);
     }
-    public TenantVehicleResponse getVehicleById(int id){
-        TenantVehicle tenantVehicle = tenantVehicleRepository.findById(id).orElseThrow(() -> new RuntimeException("vehicle cant be found"));
-        return tenantVehicleMapper.toTenantVehicleResponse(tenantVehicle);
+
+    public TenantVehicleDTO getVehicleById(int id){
+        return tenantVehicleMapper.toTenantVehicleDTO(tenantVehicleRepository.findById(id).orElseThrow(() -> new RuntimeException("Vehicle " + id + " not found")));
+    }
+
+    public List<TenantVehicleDTO> getAllVehicles(){
+        return tenantVehicleRepository.findAll().stream().map(tenantVehicleMapper::toTenantVehicleDTO).collect(Collectors.toList());
     }
 
     public void deleteTenantVehicle(int id){
+        if(tenantRepository.existsById(id)){
+            throw new RuntimeException("Vehicle " + id + " not found");
+        }
         tenantVehicleRepository.deleteById(id);
     }
 }

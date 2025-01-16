@@ -1,4 +1,4 @@
-package com.example.tenant_service.dto.response;
+package com.example.tenant_service.dto;
 
 import com.example.tenant_service.entity.Tenant;
 import lombok.AllArgsConstructor;
@@ -10,9 +10,8 @@ import java.time.LocalDateTime;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class DepositResponse {
+public class DepositDTO {
     String id;
-    Tenant tenant;
     double depositAmount;
     LocalDateTime depositDate;
 }

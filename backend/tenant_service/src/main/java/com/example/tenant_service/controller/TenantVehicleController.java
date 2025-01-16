@@ -1,14 +1,15 @@
 package com.example.tenant_service.controller;
 
+import com.example.tenant_service.dto.TenantVehicleDTO;
 import com.example.tenant_service.dto.request.TenantVehicleRequest;
-import com.example.tenant_service.dto.response.TenantVehicleResponse;
 import com.example.tenant_service.entity.TenantVehicle;
 import com.example.tenant_service.repository.TenantVehicleRepository;
 import com.example.tenant_service.service.TenantVehicleService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.AutoConfigureOrder;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/vehicle")
@@ -21,13 +22,18 @@ public class TenantVehicleController {
     private TenantVehicleService tenantVehicleService;
 
     @PostMapping("/add")
-    public ResponseEntity<TenantVehicle> addTenantVehicle(@RequestBody TenantVehicleRequest request){
+    public ResponseEntity<TenantVehicleDTO> addTenantVehicle(@RequestBody TenantVehicleRequest request){
         return ResponseEntity.ok(tenantVehicleService.createTenantVehicle(request));
     }
 
     @GetMapping("/get/{vehicleId}")
-    public ResponseEntity<TenantVehicleResponse> getTenantVehicleById(@PathVariable int vehicleId){
+    public ResponseEntity<TenantVehicleDTO> getTenantVehicleById(@PathVariable int vehicleId){
         return ResponseEntity.ok(tenantVehicleService.getVehicleById(vehicleId));
+    }
+
+    @GetMapping("/list")
+    public ResponseEntity<List<TenantVehicleDTO>> getAllVehicles(){
+        return ResponseEntity.ok(tenantVehicleService.getAllVehicles());
     }
 
     @DeleteMapping("/delete/{tenantVehicleId}")

@@ -1,8 +1,7 @@
 package com.example.tenant_service.controller;
 
 
-import com.example.tenant_service.dto.request.TenantVehicleTypeRequest;
-import com.example.tenant_service.dto.response.TenantVehicleTypeResponse;
+import com.example.tenant_service.dto.TenantVehicleTypeDTO;
 import com.example.tenant_service.entity.TenantVehicleType;
 import com.example.tenant_service.service.TenantVehicleTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,22 +17,22 @@ public class TenantVehicleTypeController {
     private TenantVehicleTypeService tenantVehicleTypeService;
 
     @PostMapping("/add")
-    public ResponseEntity<TenantVehicleType> createVehicleType(@RequestBody TenantVehicleTypeRequest request){
+    public ResponseEntity<TenantVehicleTypeDTO> createVehicleType(@RequestBody TenantVehicleType request){
         return ResponseEntity.ok(tenantVehicleTypeService.createVehicleType(request));
     }
 
     @GetMapping("/get/list")
-    public ResponseEntity<List<TenantVehicleType>> getAllVehicleTypes(){
+    public ResponseEntity<List<TenantVehicleTypeDTO>> getAllVehicleTypes(){
         return ResponseEntity.ok(tenantVehicleTypeService.getAllTenantVehicleType());
     }
 
     @GetMapping("get/{vehicleTypeId}")
-    public ResponseEntity<TenantVehicleTypeResponse> getVehicleTypeById(@PathVariable Long vehicleTypeId){
+    public ResponseEntity<TenantVehicleTypeDTO> getVehicleTypeById(@PathVariable Long vehicleTypeId){
         return ResponseEntity.ok(tenantVehicleTypeService.getTenantVehicleTypeById(vehicleTypeId));
     }
 
     @PutMapping("/update/{vehicleTypeId}")
-    public ResponseEntity<TenantVehicleType> updateVehicleTypeById(@PathVariable Long vehicleTypeId, @RequestBody TenantVehicleTypeRequest request){
+    public ResponseEntity<TenantVehicleTypeDTO> updateVehicleTypeById(@PathVariable Long vehicleTypeId, @RequestBody TenantVehicleType request){
         return ResponseEntity.ok(tenantVehicleTypeService.updateTenantVehicleType(vehicleTypeId, request));
     }
 
