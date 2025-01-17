@@ -9,4 +9,5 @@ import org.mapstruct.Mapping;
 public interface TenantMapper {
     @Mapping(source = "tenantId", target = "id")
     TenantDTO toTenantDTO(Tenant tenant);
+    Tenant toTenant(TenantDTO tenantDTO);
 }

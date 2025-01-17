@@ -15,7 +15,7 @@ public class Invoice {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     String id;
-    String tenant_id;
+    int tenant_id;
     String room_id;
     Double amount;
     String payment_method;

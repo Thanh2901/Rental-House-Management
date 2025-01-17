@@ -22,9 +22,10 @@ public class TenantService {
     private TenantMapper tenantMapper;
 
 
-    public TenantDTO createTenant(Tenant tenant) {
-        Tenant savedTenant = tenantRepository.save(tenant);
-        return tenantMapper.toTenantDTO(savedTenant);
+    public TenantDTO createTenant(TenantDTO tenantDTO) {
+        Tenant tenant = tenantMapper.toTenant(tenantDTO);
+        tenantRepository.save(tenant);
+        return tenantMapper.toTenantDTO(tenant);
     }
 
     public TenantDTO updateTenant(int id, Tenant tenant){

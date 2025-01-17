@@ -2,8 +2,11 @@ package com.example.tenant_service.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
 @Table(name = "tenant_vehicle" )
 @Entity
 public class TenantVehicle {

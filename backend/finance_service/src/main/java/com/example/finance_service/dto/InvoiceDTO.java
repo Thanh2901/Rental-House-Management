@@ -12,7 +12,7 @@ import java.util.List;
 @Data
 public class InvoiceDTO {
     String id;
-    String tenant_id;
+    int tenant_id;
     String room_id;
     Double amount;
     String payment_method;
