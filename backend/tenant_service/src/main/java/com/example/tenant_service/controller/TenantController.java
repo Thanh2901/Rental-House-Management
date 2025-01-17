@@ -15,7 +15,7 @@ public class TenantController {
     @Autowired
     private TenantService tenantService;
     @PostMapping("/add")
-    public ResponseEntity<TenantDTO> addTenant(@RequestBody Tenant tenant){
+    public ResponseEntity<TenantDTO> addTenant(@RequestBody TenantDTO tenant){
         return ResponseEntity.ok(tenantService.createTenant(tenant));
     }
 

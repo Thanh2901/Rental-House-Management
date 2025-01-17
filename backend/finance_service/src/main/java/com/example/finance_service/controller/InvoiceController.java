@@ -16,10 +16,8 @@ public class InvoiceController {
     @Autowired
     private InvoiceService invoiceService;
 
-    @PostMapping()
+    @PostMapping("/add")
     public ResponseEntity<InvoiceDTO> createInvoice(@RequestBody InvoiceDTO invoice) {
         return ResponseEntity.ok(invoiceService.createInvoice(invoice));
     }
-
-
 }

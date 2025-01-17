@@ -7,6 +7,7 @@ import com.example.finance_service.entity.Invoice;
 import com.example.finance_service.mapper.InvoiceMapper;
 import com.example.finance_service.mapper.TenantMapper;
 import com.example.finance_service.repository.InvoiceRepository;
+import feign.FeignException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,20 +25,42 @@ public class InvoiceService {
     @Autowired
     private TenantMapper tenantMapper;
 
-    public InvoiceDTO createInvoice(InvoiceDTO invoiceDTO) {
+//    public InvoiceDTO createInvoice(InvoiceDTO invoiceDTO) {
+//        TenantDTO tenantDTO = tenantMapper.toTenantDTO(invoiceDTO);
+//        tenantClient.addTenant(tenantDTO);
+//        Invoice invoice = invoiceMapper.toInvoice(invoiceDTO);
+//        Invoice savedInvoice = invoiceRepository.save(invoice);
+//        savedInvoice.getFinances().forEach(finance -> {
+//            if (finance != null) {
+//                finance.setInvoice(savedInvoice);
+//            }else {
+//                System.out.println("Found a null finance object in the list!");
+//            }
+//        });
+//        return invoiceMapper.toInvoiceDTO(savedInvoice);
+//    }
+public InvoiceDTO createInvoice(InvoiceDTO invoiceDTO) {
+    int tenantId = invoiceDTO.getTenant_id();
+    try {
+        tenantClient.getTenantById(tenantId);
+    } catch (FeignException.NotFound e) {
         TenantDTO tenantDTO = tenantMapper.toTenantDTO(invoiceDTO);
         tenantClient.addTenant(tenantDTO);
-        Invoice invoice = invoiceMapper.toInvoice(invoiceDTO);
-        Invoice savedInvoice = invoiceRepository.save(invoice);
-        savedInvoice.getFinances().forEach(finance -> {
-            if (finance != null) {
-                finance.setInvoice(savedInvoice);
-            }else {
-                System.out.println("Found a null finance object in the list!");
-            }
-        });
-        return invoiceMapper.toInvoiceDTO(savedInvoice);
     }
+
+    // Lưu invoice
+    Invoice invoice = invoiceMapper.toInvoice(invoiceDTO);
+    Invoice savedInvoice = invoiceRepository.save(invoice);
+
+    // Thiết lập quan hệ cho tài chính nếu có
+    savedInvoice.getFinances().forEach(finance -> {
+        if (finance != null) {
+            finance.setInvoice(savedInvoice);
+        }
+    });
+    return invoiceMapper.toInvoiceDTO(savedInvoice);
+}
+
 
     public List<InvoiceDTO> getAllInvoices() {
         return invoiceRepository.findAll().stream().map(invoiceMapper::toInvoiceDTO).collect(Collectors.toList());

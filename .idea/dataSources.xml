@@ -26,10 +26,9 @@
       </jdbc-additional-properties>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
-    <data-source source="LOCAL" name="finance_service@localhost" uuid="e63a7892-5832-42d4-a21e-8b9b7e539c1d">
+    <data-source source="LOCAL" name="finance_service@localhost" uuid="3e6ee8a3-672b-44ed-bbcb-bae3529e77e7">
       <driver-ref>postgresql</driver-ref>
       <synchronize>true</synchronize>
-      <imported>true</imported>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
       <jdbc-url>jdbc:postgresql://localhost:7666/finance_service</jdbc-url>
       <jdbc-additional-properties>
