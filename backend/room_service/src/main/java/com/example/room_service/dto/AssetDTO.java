@@ -1,22 +1,15 @@
-package com.example.room_service.dto.response;
+package com.example.room_service.dto;
 
 import com.example.room_service.entity.Condition;
 import com.example.room_service.entity.Room;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.AllArgsConstructor;
+import jakarta.persistence.*;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
-public class AssetResponse {
+public class AssetDTO {
     String id;
-    Condition condition;
-    @JsonIgnore
-    Room room;
     String assetType;
     String assetName;
     LocalDateTime ownerShipDate;

@@ -1,9 +1,5 @@
 package com.example.finance_service.dto;
 
-import com.example.finance_service.entity.Finance;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
 import lombok.Data;
 
 import java.time.LocalDate;

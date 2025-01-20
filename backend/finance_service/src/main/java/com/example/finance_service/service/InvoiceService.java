@@ -45,7 +45,7 @@ public InvoiceDTO createInvoice(InvoiceDTO invoiceDTO) {
         tenantClient.getTenantById(tenantId);
         System.out.println("Tenant found: " + tenantId);
     } catch (FeignException.NotFound e) {
-        throw new IllegalArgumentException("Tenant with ID " + tenantId + " does not exist.");
+        throw new RuntimeException("Tenant with ID " + tenantId + " does not exist.");
     }
     // Lưu invoice
     Invoice invoice = invoiceMapper.toInvoice(invoiceDTO);

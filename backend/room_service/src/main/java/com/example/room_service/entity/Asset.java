@@ -16,18 +16,15 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Asset {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     String id;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "room_id")
-    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     Room room;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "condition_id")
-    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     Condition condition;
     String assetType;
     String assetName;

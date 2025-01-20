@@ -15,6 +15,5 @@ public class RoomRequest {
     int maximumOccupancy;
     long roomTypeId;
     boolean roomStatus;
-    List<AssetRequest> facilities;
 }
 

@@ -2,9 +2,7 @@ package com.example.room_service.dto.request;
 
 import com.example.room_service.entity.Condition;
 import com.example.room_service.entity.Room;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -15,7 +13,8 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 public class AssetRequest {
-    long conditionId;
+    String roomId;
+    Long conditionId;
     String assetType;
     String assetName;
     LocalDateTime ownerShipDate;
