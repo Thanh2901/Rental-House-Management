@@ -11,6 +11,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 public interface TenantClient {
     @PostMapping("/add")
     TenantDTO addTenant(@RequestBody TenantDTO tenantDTO);
-    @GetMapping("/{id}")
+    @GetMapping("/get/{id}")
     TenantDTO getTenantById(@PathVariable int id);
 }

@@ -43,13 +43,13 @@ public InvoiceDTO createInvoice(InvoiceDTO invoiceDTO) {
     int tenantId = invoiceDTO.getTenant_id();
     try {
         tenantClient.getTenantById(tenantId);
+        System.out.println("Tenant found: " + tenantId);
     } catch (FeignException.NotFound e) {
-        TenantDTO tenantDTO = tenantMapper.toTenantDTO(invoiceDTO);
-        tenantClient.addTenant(tenantDTO);
+        throw new IllegalArgumentException("Tenant with ID " + tenantId + " does not exist.");
     }
-
     // Lưu invoice
     Invoice invoice = invoiceMapper.toInvoice(invoiceDTO);
+    invoice.setTenant_id(tenantId);
     Invoice savedInvoice = invoiceRepository.save(invoice);
 
     // Thiết lập quan hệ cho tài chính nếu có
