@@ -37,4 +37,16 @@ public class FinanceService {
         return financeMapper.toFinanceDTO(financeRepository.findById(id).orElseThrow(() -> new RuntimeException("finance not found")));
     }
 
+    public FinanceDTO updateFinance(String id, FinanceRequest request) {
+        Finance finance = financeRepository.findById(id).orElseThrow(() -> new RuntimeException("finance not found"));
+        financeMapper.updateFinance(finance, request);
+        Invoice invoice = invoiceRepository.findById(request.getInvoiceId()).orElseThrow(() -> new RuntimeException("invoice id is not existed"));
+        finance.setInvoice(invoice);
+        financeRepository.save(finance);
+        return financeMapper.toFinanceDTO(finance);
+    }
+
+    public void deleteFinance(String id) {
+        financeRepository.deleteById(id);
+    }
 }

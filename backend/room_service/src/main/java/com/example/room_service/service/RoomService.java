@@ -13,6 +13,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @Slf4j
 public class RoomService {
@@ -35,5 +37,26 @@ public class RoomService {
         room.setRoomType(roomType);
         roomRepository.save(room);
         return roomMapper.toRoomDTO(room);
+    }
+
+    public List<RoomDTO> getAllRooms() {
+        return roomRepository.findAll().stream().map(roomMapper::toRoomDTO).toList();
+    }
+
+    public RoomDTO getRoomById(String id) {
+        return roomMapper.toRoomDTO(roomRepository.findById(id).orElseThrow(() -> new RuntimeException("Room not found")));
+    }
+
+    public RoomDTO updateRoom(String id, RoomRequest request) {
+        Room room = roomRepository.findById(id).orElseThrow(() -> new RuntimeException("Room not found"));
+        roomMapper.updateRoom(room, request);
+        RoomType roomType = roomTypeRepository.findById(request.getRoomTypeId()).orElseThrow(() -> new RuntimeException("Room type not found"));
+        room.setRoomType(roomType);
+        roomRepository.save(room);
+        return roomMapper.toRoomDTO(room);
+    }
+
+    public void deleteRoom(String id) {
+        roomRepository.deleteById(id);
     }
 }

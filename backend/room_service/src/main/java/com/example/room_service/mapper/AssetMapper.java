@@ -10,5 +10,5 @@ import org.mapstruct.MappingTarget;
 public interface AssetMapper {
     Asset toAsset(AssetRequest request);
     AssetDTO toAssetDTO(Asset asset);
-    Asset updateAsset(@MappingTarget Asset asset, AssetRequest request);
+    void updateAsset(@MappingTarget Asset asset, AssetRequest request);
 }

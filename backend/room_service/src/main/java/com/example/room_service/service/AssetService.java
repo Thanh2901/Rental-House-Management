@@ -12,6 +12,8 @@ import com.example.room_service.repository.RoomRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class AssetService {
     @Autowired
@@ -31,5 +33,24 @@ public class AssetService {
         asset.setCondition(condition);
         assetRepository.save(asset);
         return assetMapper.toAssetDTO(asset);
+    }
+
+    public List<AssetDTO> getAllAssets() {
+        return assetRepository.findAll().stream().map(assetMapper::toAssetDTO).toList();
+    }
+
+    public AssetDTO getAssetById(String id) {
+        return assetMapper.toAssetDTO(assetRepository.findById(id).orElseThrow(() -> new RuntimeException("Asset not found")));
+    }
+
+    public AssetDTO updateAsset(String id, AssetRequest request) {
+        Asset asset = assetRepository.findById(id).orElseThrow(() -> new RuntimeException("Asset not found"));
+        assetMapper.updateAsset(asset, request);
+        assetRepository.save(asset);
+        return assetMapper.toAssetDTO(asset);
+    }
+
+    public void deleteAsset(String id) {
+        assetRepository.deleteById(id);
     }
 }
