@@ -19,4 +19,25 @@ public class ConditionController {
     public ResponseEntity<ConditionDTO> addCondition(@RequestBody ConditionDTO conditionDTO) {
         return ResponseEntity.ok(conditionService.createCondition(conditionDTO));
     }
+
+    @GetMapping("/get/list")
+    public ResponseEntity<List<ConditionDTO>> getConditionList() {
+        return ResponseEntity.ok(conditionService.getAllConditions());
+    }
+
+    @GetMapping("/get/{id}")
+    public ResponseEntity<ConditionDTO> getConditionById(@PathVariable long id) {
+        return ResponseEntity.ok(conditionService.getConditionById(id));
+    }
+
+    @PutMapping("/update/{id}")
+    public ResponseEntity<ConditionDTO> updateCondition(@PathVariable long id, @RequestBody ConditionDTO conditionDTO) {
+        return ResponseEntity.ok(conditionService.updateCondition(id, conditionDTO));
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<String> deleteCondition(@PathVariable long id) {
+        conditionService.deleteCondition(id);
+        return ResponseEntity.ok("Deleted condition with id " + id);
+    }
 }

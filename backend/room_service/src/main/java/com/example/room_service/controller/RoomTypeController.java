@@ -19,4 +19,25 @@ public class RoomTypeController {
     public ResponseEntity<RoomTypeDTO> addRoomType(@RequestBody RoomTypeDTO roomType) {
         return ResponseEntity.ok(roomTypeService.createRoomType(roomType));
     }
+
+    @GetMapping("/get/list")
+    public ResponseEntity<List<RoomTypeDTO>> getAllRoomTypes() {
+        return ResponseEntity.ok(roomTypeService.getAllRoomTypes());
+    }
+
+    @GetMapping("/get/{id}")
+    public ResponseEntity<RoomTypeDTO> getRoomTypeById(@PathVariable long id) {
+        return ResponseEntity.ok(roomTypeService.getRoomTypeById(id));
+    }
+
+    @PutMapping("/update/{id}")
+    public ResponseEntity<RoomTypeDTO> updateRoomType(@PathVariable long id, @RequestBody RoomTypeDTO roomType) {
+        return ResponseEntity.ok(roomTypeService.updateRoomType(id, roomType));
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<String> deleteRoomType(@PathVariable long id) {
+        roomTypeService.deleteRoomType(id);
+        return ResponseEntity.ok("Deleted room type with id " + id);
+    }
 }
