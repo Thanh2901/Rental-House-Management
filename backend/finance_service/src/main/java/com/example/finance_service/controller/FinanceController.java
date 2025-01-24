@@ -3,6 +3,10 @@ package com.example.finance_service.controller;
 import com.example.finance_service.dto.FinanceDTO;
 import com.example.finance_service.dto.request.FinanceRequest;
 import com.example.finance_service.service.FinanceService;
+import com.example.finance_service.service.FinanceServiceImpl;
+import lombok.AccessLevel;
+import lombok.RequiredArgsConstructor;
+import lombok.experimental.FieldDefaults;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,9 +15,10 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/finance")
+@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
+@RequiredArgsConstructor
 public class FinanceController {
-    @Autowired
-    private FinanceService financeService;
+    FinanceService financeService;
 
     @PostMapping("/add")
     public ResponseEntity<FinanceDTO> addFinance(@RequestBody FinanceRequest request) {

@@ -3,6 +3,10 @@ package com.example.room_service.controller;
 import com.example.room_service.dto.AssetDTO;
 import com.example.room_service.dto.request.AssetRequest;
 import com.example.room_service.service.AssetService;
+import com.example.room_service.service.AssetServiceImpl;
+import lombok.AccessLevel;
+import lombok.RequiredArgsConstructor;
+import lombok.experimental.FieldDefaults;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,9 +15,10 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/asset")
+@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
+@RequiredArgsConstructor
 public class AssetController {
-    @Autowired
-    private AssetService assetService;
+    AssetService assetService;
 
     @PostMapping("/add")
     public ResponseEntity<AssetDTO> addAsset(@RequestBody AssetRequest request) {

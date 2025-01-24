@@ -1,8 +1,11 @@
 package com.example.room_service.controller;
 
 import com.example.room_service.dto.ConditionDTO;
-import com.example.room_service.entity.Condition;
 import com.example.room_service.service.ConditionService;
+import com.example.room_service.service.ConditionServiceImpl;
+import lombok.AccessLevel;
+import lombok.RequiredArgsConstructor;
+import lombok.experimental.FieldDefaults;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,9 +14,10 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/condition")
+@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
+@RequiredArgsConstructor
 public class ConditionController {
-    @Autowired
-    private ConditionService conditionService;
+    ConditionService conditionService;
 
     @PostMapping("/add")
     public ResponseEntity<ConditionDTO> addCondition(@RequestBody ConditionDTO conditionDTO) {

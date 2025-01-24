@@ -4,6 +4,10 @@ package com.example.tenant_service.controller;
 import com.example.tenant_service.dto.TenantVehicleTypeDTO;
 import com.example.tenant_service.entity.TenantVehicleType;
 import com.example.tenant_service.service.TenantVehicleTypeService;
+import com.example.tenant_service.service.TenantVehicleTypeServiceImpl;
+import lombok.AccessLevel;
+import lombok.RequiredArgsConstructor;
+import lombok.experimental.FieldDefaults;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,9 +16,10 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/vehicleType")
+@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
+@RequiredArgsConstructor
 public class TenantVehicleTypeController {
-    @Autowired
-    private TenantVehicleTypeService tenantVehicleTypeService;
+    TenantVehicleTypeService tenantVehicleTypeService;
 
     @PostMapping("/add")
     public ResponseEntity<TenantVehicleTypeDTO> createVehicleType(@RequestBody TenantVehicleType request){

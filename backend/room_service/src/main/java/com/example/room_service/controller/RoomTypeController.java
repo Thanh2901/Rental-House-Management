@@ -1,8 +1,11 @@
 package com.example.room_service.controller;
 
 import com.example.room_service.dto.RoomTypeDTO;
-import com.example.room_service.entity.RoomType;
 import com.example.room_service.service.RoomTypeService;
+import com.example.room_service.service.RoomTypeServiceImpl;
+import lombok.AccessLevel;
+import lombok.RequiredArgsConstructor;
+import lombok.experimental.FieldDefaults;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,9 +14,10 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/roomtype")
+@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
+@RequiredArgsConstructor
 public class RoomTypeController {
-    @Autowired
-    private RoomTypeService roomTypeService;
+    RoomTypeService roomTypeService;
 
     @PostMapping("/add")
     public ResponseEntity<RoomTypeDTO> addRoomType(@RequestBody RoomTypeDTO roomType) {

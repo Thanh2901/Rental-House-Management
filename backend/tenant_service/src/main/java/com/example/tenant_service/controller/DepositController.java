@@ -4,15 +4,20 @@ import com.example.tenant_service.dto.DepositDTO;
 import com.example.tenant_service.dto.request.DepositRequest;
 import com.example.tenant_service.entity.Deposit;
 import com.example.tenant_service.service.DepositService;
+import com.example.tenant_service.service.DepositServiceImpl;
+import lombok.AccessLevel;
+import lombok.RequiredArgsConstructor;
+import lombok.experimental.FieldDefaults;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/deposit")
+@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
+@RequiredArgsConstructor
 public class DepositController {
-    @Autowired
-    private DepositService depositService;
+    DepositService depositService;
 
     @PostMapping("/add")
     public ResponseEntity<DepositDTO> addDeposit(@RequestBody DepositRequest request){

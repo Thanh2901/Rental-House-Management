@@ -3,6 +3,10 @@ package com.example.tenant_service.controller;
 import com.example.tenant_service.dto.TenantDTO;
 import com.example.tenant_service.entity.Tenant;
 import com.example.tenant_service.service.TenantService;
+import com.example.tenant_service.service.TenantServiceImpl;
+import lombok.AccessLevel;
+import lombok.RequiredArgsConstructor;
+import lombok.experimental.FieldDefaults;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,9 +15,10 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/tenant")
+@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
+@RequiredArgsConstructor
 public class TenantController {
-    @Autowired
-    private TenantService tenantService;
+    TenantService tenantService;
     @PostMapping("/add")
     public ResponseEntity<TenantDTO> addTenant(@RequestBody TenantDTO tenant){
         return ResponseEntity.ok(tenantService.createTenant(tenant));
