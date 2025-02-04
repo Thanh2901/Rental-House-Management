@@ -3,7 +3,14 @@
   <component name="CompilerConfiguration">
     <annotationProcessing>
       <profile default="true" name="Default" enabled="true" />
-      <profile name="Annotation profile for finance_service" enabled="true">
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="config_service" />
+        <module name="discovery_service" />
+      </profile>
+      <profile name="Annotation profile for tenant_service" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
@@ -13,14 +20,16 @@
           <entry name="$USER_HOME$/.m2/repository/org/projectlombok/lombok/1.18.32/lombok-1.18.32.jar" />
           <entry name="$USER_HOME$/.m2/repository/org/projectlombok/lombok-mapstruct-binding/0.2.0/lombok-mapstruct-binding-0.2.0.jar" />
         </processorPath>
-        <module name="room_service" />
         <module name="tenant_service" />
+        <module name="room_service" />
         <module name="finance_service" />
       </profile>
     </annotationProcessing>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="config_service" options="-parameters" />
+      <module name="discovery_service" options="-parameters" />
       <module name="finance_service" options="-parameters" />
       <module name="room_service" options="-parameters" />
       <module name="tenant_service" options="-parameters" />
