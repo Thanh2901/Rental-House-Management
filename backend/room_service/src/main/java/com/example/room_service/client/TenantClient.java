@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
-@FeignClient(name = "tenant-service", url = "http://localhost:8089/tenant")
+@FeignClient(name = "tenant-service")
 public interface TenantClient {
     @PostMapping("/add")
     TenantDTO addTenant(@RequestBody TenantDTO tenantDTO);

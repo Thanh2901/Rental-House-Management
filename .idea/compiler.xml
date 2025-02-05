@@ -9,6 +9,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="config_service" />
         <module name="discovery_service" />
+        <module name="gateway_service" />
       </profile>
       <profile name="Annotation profile for tenant_service" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
@@ -31,6 +32,7 @@
       <module name="config_service" options="-parameters" />
       <module name="discovery_service" options="-parameters" />
       <module name="finance_service" options="-parameters" />
+      <module name="gateway_service" options="-parameters" />
       <module name="room_service" options="-parameters" />
       <module name="tenant_service" options="-parameters" />
     </option>

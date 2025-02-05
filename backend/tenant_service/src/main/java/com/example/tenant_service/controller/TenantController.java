@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/tenant")
+//@RequestMapping("/tenant")
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 @RequiredArgsConstructor
 public class TenantController {
@@ -33,10 +33,12 @@ public class TenantController {
     public ResponseEntity<TenantDTO> updateTenant(@PathVariable int tenantId, @RequestBody Tenant tenant){
         return ResponseEntity.ok(tenantService.updateTenant(tenantId, tenant));
     }
+
     @GetMapping("/tenants")
     public ResponseEntity<List<TenantDTO>> getAllTenant(){
         return ResponseEntity.ok(tenantService.getAllTenant());
     }
+
     @DeleteMapping("/delete/{tenantId}")
     public ResponseEntity<String> deleteTenantById(@PathVariable int tenantId){
         tenantService.deleteTenant(tenantId);
