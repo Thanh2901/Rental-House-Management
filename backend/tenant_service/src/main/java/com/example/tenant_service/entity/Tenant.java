@@ -17,6 +17,8 @@ public class Tenant {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int tenantId;
+    // sau nho them account id
+    // int account_id
     String fullName;
     String phoneNumber;
     String idCardPassport;

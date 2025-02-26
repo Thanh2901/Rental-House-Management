@@ -3,11 +3,9 @@ package com.example.finance_service.controller;
 import com.example.finance_service.dto.FinanceDTO;
 import com.example.finance_service.dto.request.FinanceRequest;
 import com.example.finance_service.service.FinanceService;
-import com.example.finance_service.service.FinanceServiceImpl;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

@@ -1,14 +1,14 @@
-package com.example.finance_service.service;
+package com.example.finance_service.service.impl;
 
 import com.example.finance_service.client.TenantClient;
 import com.example.finance_service.dto.InvoiceDTO;
 import com.example.finance_service.entity.Invoice;
 import com.example.finance_service.mapper.InvoiceMapper;
 import com.example.finance_service.repository.InvoiceRepository;
+import com.example.finance_service.service.InvoiceService;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

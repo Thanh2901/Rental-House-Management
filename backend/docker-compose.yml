@@ -1,9 +1,9 @@
 version: '4.0'
 
 services:
-  finance_db:
+  finance_database:
     image: postgres:15
-    container_name: finance_db
+    container_name: finance_database
     restart: always
     environment:
       POSTGRES_USER: admin
@@ -14,9 +14,9 @@ services:
     volumes:
       - finance_data:/var/lib/postgresql/data
 
-  room_db:
+  room_database:
     image: postgres:15
-    container_name: room_db
+    container_name: room_database
     restart: always
     environment:
       POSTGRES_USER: admin
@@ -27,9 +27,9 @@ services:
     volumes:
       - room_data:/var/lib/postgresql/data
 
-  tenant_db:
+  tenant_database:
     image: postgres:15
-    container_name: tenant_db
+    container_name: tenant_database
     restart: always
     environment:
       POSTGRES_USER: admin
@@ -39,6 +39,19 @@ services:
       - "5777:5432"
     volumes:
       - tenant_data:/var/lib/postgresql/data
+
+  auth_database:
+    image: postgres:15
+    container_name: auth_database
+    restart: always
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: auth_service
+    ports:
+      - "7777:5432"
+    volumes:
+      - auth_data:/var/lib/postgresql/data
 
   zipkin:
     image: openzipkin/zipkin
@@ -51,5 +64,5 @@ volumes:
   finance_data:
   room_data:
   tenant_data:
-
+  auth_data:
 

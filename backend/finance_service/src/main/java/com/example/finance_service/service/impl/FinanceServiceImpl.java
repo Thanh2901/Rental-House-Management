@@ -1,4 +1,4 @@
-package com.example.finance_service.service;
+package com.example.finance_service.service.impl;
 
 import com.example.finance_service.dto.FinanceDTO;
 import com.example.finance_service.dto.request.FinanceRequest;
@@ -7,10 +7,10 @@ import com.example.finance_service.entity.Invoice;
 import com.example.finance_service.mapper.FinanceMapper;
 import com.example.finance_service.repository.FinanceRepository;
 import com.example.finance_service.repository.InvoiceRepository;
+import com.example.finance_service.service.FinanceService;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,7 +19,7 @@ import java.util.stream.Collectors;
 @Service
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 @RequiredArgsConstructor
-public class FinanceServiceImpl implements FinanceService{
+public class FinanceServiceImpl implements FinanceService {
 
       FinanceRepository financeRepository;
 
